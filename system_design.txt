@@ -1,0 +1,48 @@
+Run script in terminal: 
+
+    args:
+    -h, --help: show help
+    -d, --directory: specify directory to search for files
+    -D, --drive: specify drive to search for files
+
+    example:
+        python3 gitmanage.py -d "/home/user/Downloads" -D "C:"
+
+Program flow:
+
+    1. Parse arguments
+        1. If -h or --help, display help and exit
+        2. If -d or --directory, set directory to search, if directory does not exist, output error and exit
+        3. If -D or --drive, set drive to search, if drive does not exist, output error and exit
+        4. If -d and -D, check if directory is in drive, if not, output error and exit. If yes, set directory to search
+        6. If no arguments, search all drives
+    
+    2. Search for files in specified directory/drive or all drives
+        * Prompt user to confirm all drive search since it may take a while *
+    3. If .git folder is found, add parent directory to list
+    4. When search is complete, for each directory in list store the following in a dictionary:
+        - Directory name
+        - Git repository name
+    5. Print out list of repositories with the following information:
+        - Git repository name
+        - Directory absolute path
+    6. Ask user if they want more information or exit
+        a. If option 2 is selected, exit
+        b. If option 1 is selected, prompt user to select one of the following options:
+            i.   Inspect all repositories
+            ii.  Inspect a specific repository
+            iii. If option ii is selected prompt user to select a repository
+        c. For both options prompt the following sub-options:
+            i.  Insepct all branches
+            ii. Inspect a specific branch
+            iii. If option ii is selected prompt user to select a branch
+    7. For the more information option, using git status, print the following data for whatever scope of reference the user provided:
+        - Git repository name
+        - Directory absolute path
+        - Branch name
+        - Number of untracked files
+        - Number of unstaged edits
+        - Number of uncommitted changes
+        - Number of commits ahead of remote
+        - Number of commits behind remote
+    8. Exit
