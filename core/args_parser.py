@@ -3,15 +3,21 @@ from core.common_directories import COMMON
 import os
 
 def validate_directory(directory):
+    """
+    Validate if the directory is valid.
+    """
 
-    if directory == '.': # Current directory
-        return True
+    directory.strip()
+
+    # This might be necessary for Mac
+    # if directory == '.': # Current directory
+    #     return True
     
-    if directory == '..': # Parent directory
-        return True
+    # if directory == '..': # Parent directory
+    #     return True
     
-    if directory == '~': # Home directory
-        return True
+    # if directory == '~': # Home directory
+    #     return True
     
     if directory.lower() in COMMON.keys(): # Common directory
         return True
@@ -21,8 +27,12 @@ def validate_directory(directory):
     
     return False
 
-def validate_drive(drive):
 
+
+def validate_drive(drive):
+    """
+    Validate if the drive is valid.
+    """
     drive.strip()
 
     if len(drive) > 1:
@@ -40,13 +50,18 @@ def validate_drive(drive):
     
     return False
 
+
+
 def validate_dir_in_drive(drive, directory):
-    
+    """
+    Validate if the directory is in the drive.
+    """
     if os.path.isdir(os.path.join(drive, directory)):
         return True
     
     return False
     
+
 
 def parse_args(args=None):
     parser = argparse.ArgumentParser(description='Manage git repositories in your system.')

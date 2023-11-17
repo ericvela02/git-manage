@@ -1,6 +1,7 @@
 import sys
 from core.args_parser import *
-from core.terminal_input import *
+from core.terminal_io import *
+from core.search import *
 
 def main():
     args = parse_args(sys.argv[1:])
@@ -12,6 +13,8 @@ def main():
     elif not args.drive:
         if (validate_directory(args.directory)):
             print('Searching through directory...')
+            repos = search_dir(args.directory)
+            print_repos(repos)
         else:
             print('The provided directory does not exist.')
             sys.exit(1)
