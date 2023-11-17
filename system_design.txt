@@ -15,7 +15,9 @@ Program flow:
         2. If -d or --directory, set directory to search, if directory does not exist, output error and exit
         3. If -D or --drive, set drive to search, if drive does not exist, output error and exit
         4. If -d and -D, check if directory is in drive, if not, output error and exit. If yes, set directory to search
-        6. If no arguments, search all drives
+        5. If -p or --path, set path to search, if path does not exist, output error and exit
+        6. If -p and anything else output usage error and exit
+        7. If no arguments, search all drives
     
     2. Search for files in specified directory/drive or all drives
         * Prompt user to confirm all drive search since it may take a while *
